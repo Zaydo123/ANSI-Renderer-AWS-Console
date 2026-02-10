@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "ANSI Renderer for AWS Console",
+  "version": "1.0.0",
+  "description": "Renders ANSI escape sequences in AWS CloudWatch Logs and ECS logs with full color and formatting support",
+  "permissions": [],
+  "host_permissions": [
+    "*://*.console.aws.amazon.com/*",
+    "*://*.aws.amazon.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.console.aws.amazon.com/*",
+        "*://*.aws.amazon.com/*"
+      ],
+      "js": ["ansi-parser.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

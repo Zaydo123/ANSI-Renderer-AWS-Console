@@ -1,0 +1,108 @@
+/**
+ * ANSI Renderer Styles
+ * CSS for rendering ANSI escape sequences
+ */
+
+/* Standard 16 colors - Foreground */
+.ansi-fg-0 { color: #000000; }  /* Black */
+.ansi-fg-1 { color: #cd3131; }  /* Red */
+.ansi-fg-2 { color: #0dbc79; }  /* Green */
+.ansi-fg-3 { color: #e5e510; }  /* Yellow */
+.ansi-fg-4 { color: #2472c8; }  /* Blue */
+.ansi-fg-5 { color: #bc3fbc; }  /* Magenta */
+.ansi-fg-6 { color: #11a8cd; }  /* Cyan */
+.ansi-fg-7 { color: #e5e5e5; }  /* White */
+
+/* Bright colors - Foreground */
+.ansi-fg-8 { color: #666666; }  /* Bright Black (Gray) */
+.ansi-fg-9 { color: #f14c4c; }  /* Bright Red */
+.ansi-fg-10 { color: #23d18b; } /* Bright Green */
+.ansi-fg-11 { color: #f5f543; } /* Bright Yellow */
+.ansi-fg-12 { color: #3b8eea; } /* Bright Blue */
+.ansi-fg-13 { color: #d670d6; } /* Bright Magenta */
+.ansi-fg-14 { color: #29b8db; } /* Bright Cyan */
+.ansi-fg-15 { color: #ffffff; } /* Bright White */
+
+/* Standard 16 colors - Background */
+.ansi-bg-0 { background-color: #000000; }  /* Black */
+.ansi-bg-1 { background-color: #cd3131; }  /* Red */
+.ansi-bg-2 { background-color: #0dbc79; }  /* Green */
+.ansi-bg-3 { background-color: #e5e510; }  /* Yellow */
+.ansi-bg-4 { background-color: #2472c8; }  /* Blue */
+.ansi-bg-5 { background-color: #bc3fbc; }  /* Magenta */
+.ansi-bg-6 { background-color: #11a8cd; }  /* Cyan */
+.ansi-bg-7 { background-color: #e5e5e5; }  /* White */
+
+/* Bright colors - Background */
+.ansi-bg-8 { background-color: #666666; }  /* Bright Black (Gray) */
+.ansi-bg-9 { background-color: #f14c4c; }  /* Bright Red */
+.ansi-bg-10 { background-color: #23d18b; } /* Bright Green */
+.ansi-bg-11 { background-color: #f5f543; } /* Bright Yellow */
+.ansi-bg-12 { background-color: #3b8eea; } /* Bright Blue */
+.ansi-bg-13 { background-color: #d670d6; } /* Bright Magenta */
+.ansi-bg-14 { background-color: #29b8db; } /* Bright Cyan */
+.ansi-bg-15 { background-color: #ffffff; } /* Bright White */
+
+/* Text formatting styles */
+.ansi-bold {
+  font-weight: bold;
+}
+
+.ansi-dim {
+  opacity: 0.6;
+}
+
+.ansi-italic {
+  font-style: italic;
+}
+
+.ansi-underline {
+  text-decoration: underline;
+}
+
+.ansi-blink {
+  animation: ansi-blink-animation 1s linear infinite;
+}
+
+@keyframes ansi-blink-animation {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.ansi-reverse {
+  /* Swap foreground and background */
+  /* This is handled by swapping fg/bg in the parser, but we can add a filter as fallback */
+  filter: invert(100%);
+  display: inline-block;
+}
+
+.ansi-strikethrough {
+  text-decoration: line-through;
+}
+
+/* Combination of underline and strikethrough */
+.ansi-underline.ansi-strikethrough {
+  text-decoration: underline line-through;
+}
+
+/* Ensure proper spacing and display */
+span[data-ansi-processed] {
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+/* Make sure colors are visible on AWS Console dark theme */
+@media (prefers-color-scheme: dark) {
+  .ansi-fg-0 { color: #808080; }  /* Black -> Gray for visibility */
+  .ansi-fg-7 { color: #e5e5e5; }
+  .ansi-bg-0 { background-color: #1e1e1e; }  /* Darker black for background */
+}
+
+/* Improve readability */
+span[data-ansi-processed] > span {
+  line-height: 1.5;
+}
